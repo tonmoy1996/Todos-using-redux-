@@ -3,6 +3,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   UPDATE_TODO,
+  Active_TODO,
 } from '../actions/types';
 const initialState = {
   todos: [],
@@ -31,6 +32,11 @@ export default function (state = initialState, action) {
         todos: state.todos.map((todo) =>
           todo.id === action.payload.id ? (todo = action.payload) : todo
         ),
+      };
+    case Active_TODO:
+      return {
+        ...state,
+        todos: action.payload,
       };
     default:
       return state;

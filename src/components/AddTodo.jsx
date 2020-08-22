@@ -26,6 +26,7 @@ class AddTodo extends Component {
       const todo = {
         id: this.state.currentId,
         title: this.state.title,
+        isCompleted: false,
       };
       this.setState({
         title: '',
@@ -39,6 +40,7 @@ class AddTodo extends Component {
       const todo = {
         id: id,
         title: this.state.title,
+        isCompleted: false,
       };
       this.props.addToHandler(todo);
       this.props.addTodo(todo);

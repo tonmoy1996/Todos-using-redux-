@@ -3,6 +3,7 @@ import {
   ADD_TODO,
   DELETE_TODO,
   UPDATE_TODO,
+  Active_TODO,
 } from '../actions/types';
 
 export const getTodos = () => (dispatch) => {
@@ -51,5 +52,19 @@ export const updateTodo = (todo) => (dispatch) => {
   dispatch({
     type: UPDATE_TODO,
     payload: todo,
+  });
+};
+
+export const eleminateCompletedTodo = () => (dispatch) => {
+  const list = window.localStorage.getItem('todoList');
+  let newlist = JSON.parse(list).filter((todo) => todo.isCompleted === false);
+  if (newlist == null) {
+    newlist = [];
+    window.localStorage.setItem('todoList', JSON.stringify(newlist));
+  }
+  window.localStorage.setItem('todoList', JSON.stringify(newlist));
+  dispatch({
+    type: Active_TODO,
+    payload: newlist,
   });
 };
